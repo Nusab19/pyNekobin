@@ -1,0 +1,70 @@
+import json
+import httpx
+import asyncio
+
+
+class objectify:
+    def __init__(self, entries):
+        self.ok: bool = False
+        self.link: str = None
+        self.message: str = None
+        self.error: Exception = None
+
+        self.__dict__.update(entries)
+
+    def __repr__(self):
+        return f"\nOk: {self.ok}" \
+               f"\nLink: {self.link}" \
+               f"\nMessage: {self.message}" \
+               f"\nError: {self.error}\n"
+
+
+class Nekobin:
+    """
+
+
+    """
+
+    def __init__(self, **kw):
+        """
+        Pass any arguments that http.AsyncClient may take.
+        Such as:
+            headers, timeout, proxy
+        """
+        self.__SES = httpx.AsyncClient(**kw)
+
+    async def paste(self, text: str):
+        data = {'content': text}
+        try:
+            r = await self.__SES.post('https://nekobin.com/api/documents', json=data)
+            r = r.json()
+
+        except json.decoder.JSONDecodeError as e:
+            x = {"ok": False, "message": "Failed to parse json", "error": e}
+            return objectify(x)
+
+        except Exception as e:
+            x = {
+                "ok": False,
+                "message": "Unknown Exception occurred",
+                "error": e}
+
+            return objectify(x)
+
+        if r.get("ok"):
+            x = {
+                "ok": True,
+                "link": f"https://nekobin.com/{r['result']['key']}",
+                "message": "Succreefully pasted test in Nekobin"
+            }
+
+            return objectify(x)
+
+        else:
+            x = {
+                "ok": False,
+                "message": "Nekobin didn't fulful the request",
+                "error": Exception("Response is not 200")
+            }
+
+            return objectify(x)

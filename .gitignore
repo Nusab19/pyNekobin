@@ -1,0 +1,7 @@
+pypi.sh
+__pycache__/
+nekobin/__pycache__
+build/
+dist/
+pyNekobin.egg-info/
+README.md
