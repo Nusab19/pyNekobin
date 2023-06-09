@@ -16,7 +16,7 @@ class Objectify:
             entries (dict): A dictionary containing the entries to be added as attributes to the object.
         """
         self.ok: bool = False
-        self.link: str = None
+        self.url: str = None
         self.content: str = None
         self.message: str = None
         self.error: Exception = None
@@ -34,24 +34,26 @@ class Nekobin:
         Initializes the Nekobin instance with the given arguments.
 
         Args:
-            **kw: Any arguments that http.AsyncClient may take, such as headers, timeout, or proxy.
+            **kw: Any keyword arguments that http.AsyncClient may take, such as headers, timeout, or proxy.
         """
         self.__SES = httpx.AsyncClient(**kw)
         self._baseUrl = "https://nekobin.com/api/documents/"
 
-    async def paste(self, text: str):
+    async def paste(self, text: str, **kw):
         """
         Posts the given text to the nekobin.com API and returns an Objectify instance.
 
         Args:
             text (str): The text to be pasted.
+            **kw: Any keyword arguments that http.AsyncClient may take, such as headers, timeout, or proxy.
+
 
         Returns:
             Objectify: An Objectify instance representing the result of the paste operation.
         """
         data = {'content': text}
         try:
-            r = await self.__SES.post(self._baseUrl, json=data)
+            r = await self.__SES.post(self._baseUrl, json=data, **kw)
             r = r.json()
 
         except json.decoder.JSONDecodeError as e:
@@ -69,7 +71,7 @@ class Nekobin:
         if r.get("ok"):
             x = {
                 "ok": True,
-                "link": f"https://nekobin.com/{r['result']['key']}",
+                "url": f"https://nekobin.com/{r['result']['key']}",
                 "message": "Successfully pasted text in Nekobin"
             }
 
@@ -84,20 +86,21 @@ class Nekobin:
 
             return Objectify(x)
 
-    async def read(self, url: str):
+    async def read(self, url: str, **kw):
         """
         Reads the text from the nekobin.com API for the given URL and returns an Objectify instance.
 
         Args:
             url (str): The URL of the nekobin.com document to read.
+            **kw: Any keyword arguments that http.AsyncClient may take, such as headers, timeout, or proxy.
 
         Returns:
             Objectify: An Objectify instance representing the result of the read operation.
         """
         if not url.startswith("http"):
-            url = "http://" + url
+            url = "https://" + url
 
-        pattern = r"^http:\/\/nekobin\.com\/[a-z]{5,20}$"
+        pattern = r"^(http|https):\/\/nekobin\.com\/[a-z]{5,20}$"
 
         if not re.match(pattern, url):
             x = {
@@ -109,7 +112,7 @@ class Nekobin:
             return Objectify(x)
 
         doc = url.split('/')[-1]
-        r = await self.__SES.get(self._baseUrl + doc)
+        r = await self.__SES.get(self._baseUrl + doc, **kw)
 
         if not r.get("ok"):
             x = {
