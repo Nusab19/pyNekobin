@@ -100,7 +100,8 @@ class Nekobin:
         if not url.startswith("http"):
             url = "https://" + url
 
-        pattern = r"^(http|https):\/\/nekobin\.com\/[a-z]{5,20}$"
+
+        pattern = r"^(http|https):\/\/nekobin\.com\/[a-z.]{5,20}$"
 
         if not re.match(pattern, url):
             x = {
@@ -111,7 +112,7 @@ class Nekobin:
 
             return Objectify(x)
 
-        doc = url.split('/')[-1]
+        doc = url.split('/')[-1].split('.')[0]
         r = await self.__SES.get(self._baseUrl + doc, **kw)
         r = r.json()
 
