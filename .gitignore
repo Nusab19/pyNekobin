@@ -4,3 +4,4 @@ build/
 dist/
 pyNekobin.egg-info/
 upload.py
+test.py
