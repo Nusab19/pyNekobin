@@ -6,10 +6,10 @@ This is a Python package that provides a simple wrapper around the [Nekobin](htt
 
 ## Installation
 
-You can install the package using pip:
+You can install the package from [pypy](https://pypi.org/project/pyNekobin/) using pip:
 
 ```
-pip install pynekobin
+pip install -U pynekobin
 ```
 
 ## Usage
