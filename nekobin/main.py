@@ -1,3 +1,4 @@
+import re
 import json
 import httpx
 import asyncio
@@ -21,7 +22,7 @@ class objectify:
 
 class Nekobin:
     """
-
+The wrapper class for nekobin.com
 
     """
 
@@ -32,11 +33,12 @@ class Nekobin:
             headers, timeout, proxy
         """
         self.__SES = httpx.AsyncClient(**kw)
+        self._baseUrl = "https://nekobin.com/api/documents/"
 
     async def paste(self, text: str):
         data = {'content': text}
         try:
-            r = await self.__SES.post('https://nekobin.com/api/documents', json=data)
+            r = await self.__SES.post(self._baseUrl, json=data)
             r = r.json()
 
         except json.decoder.JSONDecodeError as e:
@@ -55,7 +57,7 @@ class Nekobin:
             x = {
                 "ok": True,
                 "link": f"https://nekobin.com/{r['result']['key']}",
-                "message": "Succreefully pasted test in Nekobin"
+                "message": "Succreefully pasted text in Nekobin"
             }
 
             return objectify(x)
@@ -63,8 +65,52 @@ class Nekobin:
         else:
             x = {
                 "ok": False,
-                "message": "Nekobin didn't fulful the request",
+                "message": "Nekobin didn't fulfil the request",
                 "error": Exception("Response is not 200")
+            }
+
+            return objectify(x)
+
+    async def read(self, url: str):
+        if not url.startswith("http"):
+            url = "http://" + url
+
+        pattern = r"^http:\/\/nekobin\.com\/[a-z]{5,20}$"
+
+        if not re.match(pattern, url):
+            x = {
+                "ok": False,
+                "message": "URL is not valid.\nExample Url: https://nekobin.com/abcdefghi",
+                "error": Exception("URL is not Valid")
+            }
+
+            return objectify(x)
+
+        doc = url.split('/')[-1]
+        r = await self.__SES.get(self._baseUrl + doc)
+
+        if not r.get("ok"):
+            x = {
+                "ok": False,
+                "message": "Document not found in Nekobin Database",
+                "error": Exception(r.get("error").replace('_', ' '))
+            }
+
+            return objectify(x)
+
+        try:
+            x = {
+                "ok": True,
+                "content": r["result"]["content"],
+                "message": "Successfully retrieved text from Nekobin"
+            }
+            return objectify(x)
+
+        except Exception:
+            x = {
+                "ok": False,
+                "message": "Nekobin did not fulfil the request",
+                "error": Exception("Document not retrieved")
             }
 
             return objectify(x)
