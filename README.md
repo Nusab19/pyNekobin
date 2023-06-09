@@ -82,6 +82,18 @@ asyncio.run(main())
 
 If you encounter any bugs or issues, please feel free to open an issue on the [GitHub repository](https://github.com/Nusab19/pyNekobin/pulls). If you would like to contribute to the development of the package, you can fork the repository and submit a pull request with your changes.
 
+To use this package locally:
+```bash
+git clone https://github.com/Nusab19/pyNekobin
+cd pyNekobin
+pip install -e .
+```
+
+
 ## License
 
 This package is licensed under the MIT License. See the `LICENSE` file for more information.
+
+
+
+**Made with ❤ by Nusab Taha from the Universe!**
