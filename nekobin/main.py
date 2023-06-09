@@ -4,38 +4,51 @@ import httpx
 import asyncio
 
 
-class objectify:
+class Objectify:
+    """
+    A utility class that converts a dictionary into an object.
+    """
     def __init__(self, entries):
+        """
+        Initializes the Objectify instance with the given dictionary entries.
+
+        Args:
+            entries (dict): A dictionary containing the entries to be added as attributes to the object.
+        """
         self.ok: bool = False
         self.link: str = None
+        self.content: str = None
         self.message: str = None
         self.error: Exception = None
 
         self.__dict__.update(entries)
 
-    def __repr__(self):
-        return f"\nOk: {self.ok}" \
-               f"\nLink: {self.link}" \
-               f"\nMessage: {self.message}" \
-               f"\nError: {self.error}\n"
 
 
 class Nekobin:
     """
-The wrapper class for nekobin.com
-
+    A wrapper class for the nekobin.com API.
     """
-
     def __init__(self, **kw):
         """
-        Pass any arguments that http.AsyncClient may take.
-        Such as:
-            headers, timeout, proxy
+        Initializes the Nekobin instance with the given arguments.
+
+        Args:
+            **kw: Any arguments that http.AsyncClient may take, such as headers, timeout, or proxy.
         """
         self.__SES = httpx.AsyncClient(**kw)
         self._baseUrl = "https://nekobin.com/api/documents/"
 
     async def paste(self, text: str):
+        """
+        Posts the given text to the nekobin.com API and returns an Objectify instance.
+
+        Args:
+            text (str): The text to be pasted.
+
+        Returns:
+            Objectify: An Objectify instance representing the result of the paste operation.
+        """
         data = {'content': text}
         try:
             r = await self.__SES.post(self._baseUrl, json=data)
@@ -43,7 +56,7 @@ The wrapper class for nekobin.com
 
         except json.decoder.JSONDecodeError as e:
             x = {"ok": False, "message": "Failed to parse json", "error": e}
-            return objectify(x)
+            return Objectify(x)
 
         except Exception as e:
             x = {
@@ -51,27 +64,36 @@ The wrapper class for nekobin.com
                 "message": "Unknown Exception occurred",
                 "error": e}
 
-            return objectify(x)
+            return Objectify(x)
 
         if r.get("ok"):
             x = {
                 "ok": True,
                 "link": f"https://nekobin.com/{r['result']['key']}",
-                "message": "Succreefully pasted text in Nekobin"
+                "message": "Successfully pasted text in Nekobin"
             }
 
-            return objectify(x)
+            return Objectify(x)
 
         else:
             x = {
                 "ok": False,
-                "message": "Nekobin didn't fulfil the request",
+                "message": "Nekobin did not fulfill the request",
                 "error": Exception("Response is not 200")
             }
 
-            return objectify(x)
+            return Objectify(x)
 
     async def read(self, url: str):
+        """
+        Reads the text from the nekobin.com API for the given URL and returns an Objectify instance.
+
+        Args:
+            url (str): The URL of the nekobin.com document to read.
+
+        Returns:
+            Objectify: An Objectify instance representing the result of the read operation.
+        """
         if not url.startswith("http"):
             url = "http://" + url
 
@@ -80,11 +102,11 @@ The wrapper class for nekobin.com
         if not re.match(pattern, url):
             x = {
                 "ok": False,
-                "message": "URL is not valid.\nExample Url: https://nekobin.com/abcdefghi",
+                "message": "URL is not valid. Example Url: https://nekobin.com/abcdefghi",
                 "error": Exception("URL is not Valid")
             }
 
-            return objectify(x)
+            return Objectify(x)
 
         doc = url.split('/')[-1]
         r = await self.__SES.get(self._baseUrl + doc)
@@ -96,7 +118,7 @@ The wrapper class for nekobin.com
                 "error": Exception(r.get("error").replace('_', ' '))
             }
 
-            return objectify(x)
+            return Objectify(x)
 
         try:
             x = {
@@ -104,13 +126,13 @@ The wrapper class for nekobin.com
                 "content": r["result"]["content"],
                 "message": "Successfully retrieved text from Nekobin"
             }
-            return objectify(x)
+            return Objectify(x)
 
         except Exception:
             x = {
                 "ok": False,
-                "message": "Nekobin did not fulfil the request",
+                "message": "Nekobin did not fulfill the request",
                 "error": Exception("Document not retrieved")
             }
 
-            return objectify(x)
+            return Objectify(x)
