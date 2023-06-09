@@ -53,7 +53,7 @@ class Nekobin:
         """
         data = {'content': text}
         try:
-            r = await self.__SES.post(self._baseUrl, json=data, **kw)
+            r = await self.__SES.post(self._baseUrl[:-1], json=data, **kw)
             r = r.json()
 
         except json.decoder.JSONDecodeError as e:
@@ -113,6 +113,7 @@ class Nekobin:
 
         doc = url.split('/')[-1]
         r = await self.__SES.get(self._baseUrl + doc, **kw)
+        r = r.json()
 
         if not r.get("ok"):
             x = {

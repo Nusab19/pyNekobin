@@ -60,6 +60,7 @@ As this package uses `httpx` under the hood, you can pass additional keyword arg
 
 ```python
 from nekobin import Nekobin
+import asyncio
 
 nb = Nekobin(timeout=10, headers={}, follow_redirects=True)
 ```
@@ -67,6 +68,11 @@ nb = Nekobin(timeout=10, headers={}, follow_redirects=True)
 If you want to pass these arguments in each method call, you have that too:
 
 ```python
+from nekobin import Nekobin
+import asyncio
+
+nb = Nekobin()
+
 async def main():
     result = await nb.paste("Hello, world!", timeout=10)
     url = result.url
@@ -96,4 +102,4 @@ This package is licensed under the MIT License. See the `LICENSE` file for more 
 
 
 
-**Made with ❤ by Nusab Taha from the Universe!**
+**Made with ❤ by [Nusab Taha](https://github.com/Nusab19) from the Universe!**
