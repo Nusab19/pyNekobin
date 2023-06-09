@@ -1,5 +1,3 @@
-Here's a revised version of the README.md file with some minor spelling and grammar corrections:
-
 # pyNekobin - A Wrapper for Nekobin API
 
 This is a Python package that provides a simple wrapper around the [Nekobin](https://nekobin.com/) API, allowing you to easily paste and retrieve text snippets from the popular pastebin service.
