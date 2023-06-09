@@ -2,7 +2,7 @@
 
 This is a Python package that provides a simple wrapper around the [Nekobin](https://nekobin.com/) API, allowing you to easily paste and retrieve text snippets from the popular pastebin service.
 
-<img src="https://img.shields.io/pypi/l/pyNekobin.svg" alt="MIT LICENSE"> <img src="https://img.shields.io/pypi/pyversions/pynekobin.svg" alt="Supported Oython Versions">
+<img src="https://img.shields.io/pypi/l/pyNekobin.svg" alt="MIT LICENSE"> <img src="https://img.shields.io/pypi/pyversions/pynekobin.svg" alt="Supported Python Versions">
 <img src="https://img.shields.io/pypi/v/pynekobin.svg" alt="PyPy Version">
 <img src="https://api.codacy.com/project/badge/Grade/99d901eaa09b44b4819aec05c330c968" alt="Code Quality">
 

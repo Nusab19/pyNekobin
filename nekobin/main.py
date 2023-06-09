@@ -1,13 +1,16 @@
+# pylint:disable=C0103, C0114, C0301, R0903, W0718
+
+
 import re
 import json
 import httpx
-import asyncio
 
 
 class Objectify:
     """
     A utility class that converts a dictionary into an object.
     """
+
     def __init__(self, entries):
         """
         Initializes the Objectify instance with the given dictionary entries.
@@ -24,11 +27,11 @@ class Objectify:
         self.__dict__.update(entries)
 
 
-
 class Nekobin:
     """
     A wrapper class for the nekobin.com API.
     """
+
     def __init__(self, **kw):
         """
         Initializes the Nekobin instance with the given arguments.
@@ -77,14 +80,13 @@ class Nekobin:
 
             return Objectify(x)
 
-        else:
-            x = {
-                "ok": False,
-                "message": "Nekobin did not fulfill the request",
-                "error": Exception("Response is not 200")
-            }
+        x = {
+            "ok": False,
+            "message": "Nekobin did not fulfill the request",
+            "error": Exception("Response is not 200")
+        }
 
-            return Objectify(x)
+        return Objectify(x)
 
     async def read(self, url: str, **kw):
         """
@@ -99,7 +101,6 @@ class Nekobin:
         """
         if not url.startswith("http"):
             url = "https://" + url
-
 
         pattern = r"^(http|https):\/\/nekobin\.com\/[a-z.]{5,20}$"
 
