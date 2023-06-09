@@ -37,9 +37,9 @@ async def main():
     result = await nb.paste("Hello, world!")
     
     if result.ok:
-        print("Pasted text at:", result.url)
+        print("Pasted text at:", result.url) # -> Pasted text at: https://nekobin.com/abxajsyas
     else:
-        print("Error:",  result.message)
+        print("Error:",  result.message)     # Error: Nekobin did not fulfil the request
 
 asyncio.run(main())
 ```
@@ -48,12 +48,12 @@ Similarly, you can use the `read()` method to retrieve text from Nekobin:
 
 ```python
 async def main():
-    result = await nb.read("https://nekobin.com/abcdefg")
+    result = await nb.read("https://nekobin.com/abxajsyas")
     
     if result.ok:
-        print("Retrieved text:", result.content)
+        print("Retrieved text:", result.content) # -> Retrieved text: Hello, world!
     else:
-        print("Error:", result.message)
+        print("Error:", result.message)          # -> Error: Document not found 
 
 asyncio.run(main())
 ```
