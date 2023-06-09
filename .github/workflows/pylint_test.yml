@@ -17,7 +17,7 @@ jobs:
     - name: Installing Dependencies
       run: |
         python -m pip install -U pip
-        pip install pylint httpx
+        pip install -U pylint httpx
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py')
+        python pylint_test.py
