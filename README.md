@@ -35,6 +35,7 @@ To paste text to Nekobin, you can use the `paste()` method:
 ```python
 async def main():
     result = await nb.paste("Hello, world!")
+    
     if result.ok:
         print("Pasted text at:", result.url)
     else:
@@ -48,6 +49,7 @@ Similarly, you can use the `read()` method to retrieve text from Nekobin:
 ```python
 async def main():
     result = await nb.read("https://nekobin.com/abcdefg")
+    
     if result.ok:
         print("Retrieved text:", result.content)
     else:
