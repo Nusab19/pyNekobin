@@ -1,4 +1,4 @@
 from .main import Nekobin
 
 
-__version__ = "2.4"
+__version__ = "2.5"

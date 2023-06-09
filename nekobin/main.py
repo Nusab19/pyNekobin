@@ -29,7 +29,7 @@ class Objectify:
 
 class Nekobin:
     """
-    A wrapper class for the nekobin.com API.
+A wrapper class for the nekobin.com API.
     """
 
     def __init__(self, **kw):

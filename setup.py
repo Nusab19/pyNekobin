@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Nusab19 
+# Copyright (c) 2023 Nusab19
 
 import os
 from setuptools import setup, find_packages
@@ -15,10 +15,7 @@ if os.path.isfile("README.md"):
         big_description = readme.read()
 
 else:
-    big_description = "pyNekobin - Paste Text into Nekobin with Python"
-
-
-
+    big_description = "PyNekobin - Paste Text into Nekobin with Python"
 
 
 setup(name="pyNekobin",
@@ -33,12 +30,12 @@ setup(name="pyNekobin",
       keywords=["Nekobin", "pyNekobin", "Paste Code", "Paste Bin"],
       long_description=big_description,
       long_description_content_type="text/markdown",
-      
+
       package_data={"pyNekobin": ["data/*.json"]},
       include_package_data=True,
-      
+
       install_requires=["httpx>=0.23.0"],
-      python_requires = ">=3.6",
+      python_requires=">=3.6",
       classifiers=[
           "Development Status :: 5 - Production/Stable",
           "Intended Audience :: Developers",
@@ -50,4 +47,4 @@ setup(name="pyNekobin",
           "Programming Language :: Python :: 3.9",
           "Programming Language :: Python :: 3.10",
       ],
-)
+      )
