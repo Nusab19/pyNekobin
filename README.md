@@ -1,6 +1,6 @@
 # pyNekobin - A Wrapper for Nekobin API
 <p align="center">
-<img height="50%" src="https://graph.org/file/3d18ed58543a0379b241c.jpg">
+<img height="300px" src="https://graph.org/file/3d18ed58543a0379b241c.jpg">
 </p>
 
 This is a Python package that provides a simple wrapper around the [Nekobin](https://nekobin.com/) API, allowing you to easily paste and retrieve text snippets from the popular pastebin service.
