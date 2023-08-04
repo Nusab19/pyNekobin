@@ -17,6 +17,11 @@ You can install the package from [pypy](https://pypi.org/project/pyNekobin/) usi
 pip install -U pynekobin
 ```
 
+## Docs
+Docs website: https://nusab19.github.io/pyNekobin
+
+The content of the docs website is the same as this README file. :3
+
 ## Usage
 
 This package is asynchronous and uses httpx under the hood to make HTTP requests. So, you need to use the `await` keyword with each method call.
