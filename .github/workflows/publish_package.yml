@@ -13,6 +13,11 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: '3.x'
+
+    - name: Check if ready for publish
+      id: get_status
+      run: python -c "import nekobin;print(nekobin.publish)"
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -23,7 +28,8 @@ jobs:
     - name: Build package
       run: python setup.py sdist
     - name: Publish package
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_API_TOKEN }}
-        run: twine upload --username ${{ secrets.USERNAME }} --password ${{ secrets.PASSWORD }} dist/*
+      run: |
+          if [[ "${{ steps.get_status.outputs.stdout }}" == "1" ]]; then
+            twine upload --username ${{ secrets.USERNAME }} --password ${{ secrets.PASSWORD }} dist/*
+          else
+            exit 0
