@@ -7,7 +7,8 @@ This is a Python package that provides a simple wrapper around the [Nekobin](htt
 
 <img src="https://img.shields.io/pypi/l/pyNekobin.svg" alt="MIT LICENSE"> <img src="https://img.shields.io/pypi/pyversions/pynekobin.svg" alt="Supported Python Versions">
 <img src="https://img.shields.io/pypi/v/pynekobin.svg" alt="PyPy Version">
-<img src="https://api.codacy.com/project/badge/Grade/99d901eaa09b44b4819aec05c330c968" alt="Code Quality">
+<img src="https://github.com/Nusab19/pyNekobin/assets/85403795/3571b347-f97a-409c-9bc3-fdcc8d48e098" alt="Code Quality">
+
 
 ## Installation
 
