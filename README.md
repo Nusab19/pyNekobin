@@ -17,8 +17,8 @@ You can install the package from [pypy](https://pypi.org/project/pyNekobin/) usi
 pip install -U pynekobin
 ```
 
-## Docs
-Docs website: https://nusab19.github.io/pyNekobin
+## Documentation
+Documentation of this package can be found at <a href="https://nusab19.github.io/pyNekobin">nusab19.github.io/pyNekobin</a>
 
 The content of the docs website is the same as this README file. :3
 
