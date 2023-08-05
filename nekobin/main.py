@@ -142,6 +142,6 @@ A wrapper class for the nekobin.com API.
             return Objectify(x)
     
 
-    def isNekobinUrl(url: str):
+    def isNekobinUrl(self, url: str):
         pattern = r"^(http|https):\/\/nekobin\.com\/[a-z.]{5,20}$"
         return re.match(pattern, url)
