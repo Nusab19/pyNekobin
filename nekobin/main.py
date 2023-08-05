@@ -102,9 +102,7 @@ A wrapper class for the nekobin.com API.
         if not url.startswith("http"):
             url = "https://" + url
 
-        pattern = r"^(http|https):\/\/nekobin\.com\/[a-z.]{5,20}$"
-
-        if not re.match(pattern, url):
+        if not self.isNekobinUrl(url):
             x = {
                 "ok": False,
                 "message": "URL is not valid. Example Url: https://nekobin.com/abcdefghi",
@@ -142,3 +140,8 @@ A wrapper class for the nekobin.com API.
             }
 
             return Objectify(x)
+    
+
+    def isNekobinUrl(url: str):
+        pattern = r"^(http|https):\/\/nekobin\.com\/[a-z.]{5,20}$"
+        return re.match(pattern, url)
