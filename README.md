@@ -5,10 +5,10 @@
 
 This is a Python package that provides a simple wrapper around the [Nekobin](https://nekobin.com/) API, allowing you to easily paste and retrieve text snippets from the popular pastebin service.
 
-<img src="https://img.shields.io/pypi/l/pyNekobin.svg" alt="MIT LICENSE"> <img src="https://img.shields.io/pypi/pyversions/pynekobin.svg" alt="Supported Python Versions">
-<img src="https://img.shields.io/pypi/v/pynekobin.svg" alt="PyPy Version">
-<img src="https://github.com/Nusab19/pyNekobin/assets/85403795/3571b347-f97a-409c-9bc3-fdcc8d48e098" alt="Code Quality">
-
+[![MIT LICENSE](https://img.shields.io/pypi/l/pyNekobin.svg)](#) [![Supported Python Versions](https://img.shields.io/pypi/pyversions/pynekobin.svg)](#)
+[![Pylint Test](https://github.com/Nusab19/pyNekobin/actions/workflows/pylint_test.yml/badge.svg)](https://github.com/Nusab19/pyNekobin/actions/workflows/pylint_test.yml)
+[![PyPy Version](https://img.shields.io/pypi/v/pynekobin.svg)](#)
+![Code Quality](https://github.com/Nusab19/pyNekobin/assets/85403795/3571b347-f97a-409c-9bc3-fdcc8d48e098)
 
 ## Installation
 
