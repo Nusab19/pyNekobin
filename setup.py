@@ -4,7 +4,7 @@ import os
 from setuptools import setup
 
 # Version
-version = "3.2"
+version = "3.1"
 
 # os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
