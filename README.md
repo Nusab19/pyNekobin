@@ -105,7 +105,6 @@ To use this package locally:
 ```bash
 git clone https://github.com/Nusab19/pyNekobin
 cd pyNekobin
-pip install -U httpx
 pip install -e .
 ```
 
