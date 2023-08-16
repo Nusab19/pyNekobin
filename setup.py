@@ -1,11 +1,10 @@
 # Copyright (c) 2023 Nusab19
 
 import os
-from setuptools import setup, find_packages
+from setuptools import setup
 
 # Version
-from nekobin import __version__ as v
-
+version = "3.2"
 
 # os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
@@ -15,17 +14,17 @@ if os.path.isfile("README.md"):
         big_description = readme.read()
 
 else:
-    big_description = "PyNekobin - Paste Text into Nekobin with Python"
+    big_description = "PyNekobin - Paste Text into Nekobin.com with Python"
 
 
 setup(name="pyNekobin",
-      version=v,
+      version=version,
       description="Paste codes to Nekobin.com with python",
       url="https://github.com/Nusab19/pyNekobin",
       author="Nusab Taha",
       author_email="nusabtaha33@gmail.com",
       license="MIT",
-      download_url=f"https://github.com/Nusab19/pyNekobin/releases/tag/pyNekobin-{v}",
+      download_url=f"https://github.com/Nusab19/pyNekobin/releases/tag/pyNekobin-{version}",
       keywords=["Nekobin", "pyNekobin", "Paste Code", "Paste Bin"],
       long_description=big_description,
       long_description_content_type="text/markdown",
