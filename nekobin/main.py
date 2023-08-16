@@ -67,7 +67,8 @@ A wrapper class for the nekobin.com API.
             x = {
                 "ok": False,
                 "message": "Unknown Exception occurred",
-                "error": e}
+                "error": e
+            }
 
             return Objectify(x)
 
